@@ -1,8 +1,8 @@
-import { Button, Container, Flex, HStack, Text } from "@chakra-ui/react";
+import { Button, Container, Flex, HStack, Icon, Text } from "@chakra-ui/react";
 import { useTheme } from "next-themes"; 
 import { Link } from "react-router-dom";
 
-import { AiOutlinePlusSquare } from "react-icons/ai"; 
+import { FiPlusSquare } from "react-icons/fi";
 import { IoMoon } from "react-icons/io5";
 import { LuSun } from "react-icons/lu";
 
@@ -36,7 +36,9 @@ const Navbar = () => {
         <HStack padding={4} alignItems={"center"}>
           <Link to={"/create"}>
             <Button>
-              <AiOutlinePlusSquare fontSize={20} />
+              <Icon >
+                <FiPlusSquare fontSize={20} />
+              </Icon>
             </Button>
           </Link>
           <Button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
