@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Product from "../models/product.model.js";
 
 export const getProducts = async (req, res) => {
@@ -8,7 +9,7 @@ export const getProducts = async (req, res) => {
     console.error(`Error: ${error.message}`);
     return res
       .status(500)
-      .json({ success: false, message: "Error fetching products" });
+      .json({ success: false, message: "Internal server error" });
   }
 };
 
@@ -38,6 +39,12 @@ export const updateProduct = async (req, res) => {
   const { id } = req.params;
   const product = req.body;
 
+  if (!mongoose.Types.ObjectID.isValid(id)) {
+    return res
+      .status(404)
+      .json({ success: false, message: "Invalid product id" });
+  }
+
   try {
     const updatedProduct = await Product.findByIdAndUpdate(id, product, {
       new: true,
@@ -46,13 +53,19 @@ export const updateProduct = async (req, res) => {
   } catch (error) {
     console.error(`Error: ${error.message}`);
     return res
-      .status(404)
-      .json({ success: false, message: "Product not found" });
+      .status(500)
+      .json({ success: false, message: "Internal server error" });
   }
 };
 
 export const deleteProduct = async (req, res) => {
   const { id } = req.params;
+
+  if (!mongoose.Types.ObjectID.isValid(id)) {
+    return res
+      .status(404)
+      .json({ success: false, message: "Invalid product id" });
+  }
 
   try {
     await Product.findByIdAndDelete(id);
@@ -60,7 +73,7 @@ export const deleteProduct = async (req, res) => {
   } catch (error) {
     console.error(`Error: ${error.message}`);
     return res
-      .status(404)
-      .json({ success: false, message: "Product not found" });
+      .status(500)
+      .json({ success: false, message: "Internal server error" });
   }
 };
