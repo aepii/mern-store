@@ -1,5 +1,5 @@
 import { Button, Container, Flex, HStack, Icon, Text } from "@chakra-ui/react";
-import { useTheme } from "next-themes"; 
+import { useTheme } from "next-themes";
 import { Link } from "react-router-dom";
 
 import { FiPlusSquare } from "react-icons/fi";
@@ -8,11 +8,11 @@ import { LuSun } from "react-icons/lu";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
-  console.log(theme)
+  console.log(theme);
   return (
-    <Container maxW={"1920px"} px={4} py={4}>
+    <Container maxW={"1920px"} px={4} py={4} boxShadow={"md"}>
       <Flex
-        h={16}
+        h={{ base:20, sm:12 }}
         alignItems={"center"}
         justifyContent={"space-between"}
         flexDir={{
@@ -21,7 +21,7 @@ const Navbar = () => {
         }}
       >
         <Text
-          fontSize={{ base: "22px", sm: "28px" }}
+          fontSize={{ base:"xl", sm:"3xl" }}
           fontWeight={"bold"}
           textTransform={"uppercase"}
           textAlign={"center"}
@@ -36,13 +36,13 @@ const Navbar = () => {
         <HStack padding={4} alignItems={"center"}>
           <Link to={"/create"}>
             <Button>
-              <Icon >
+              <Icon>
                 <FiPlusSquare fontSize={20} />
               </Icon>
             </Button>
           </Link>
           <Button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-            {theme === "light" ? <IoMoon /> : <LuSun size='20' />}
+            {theme === "light" ? <IoMoon /> : <LuSun size="20" />}
           </Button>
         </HStack>
       </Flex>
