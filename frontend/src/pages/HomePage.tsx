@@ -9,6 +9,7 @@ import {
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useProductStore } from "@/store/product";
+import ProductCard from "@/components/ProductCard";
 
 const HomePage = () => {
   const { fetchProducts, products } = useProductStore();
@@ -34,11 +35,11 @@ const HomePage = () => {
         </Heading>
       </VStack>
 
-      <SimpleGrid
-        columns={{ base: 1, md: 2, lg: 3 }}
-        padding={10}
-        w={"full"}
-      ></SimpleGrid>
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} padding={10} w={"full"}>
+        {products.map((product) => (
+          <ProductCard key={product._id} product={product} />
+        ))}
+      </SimpleGrid>
 
       <Text fontSize="xl" textAlign="center" fontWeight="bold">
         No products found 😢{" "}

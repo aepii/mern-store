@@ -8,7 +8,6 @@ import { LuSun } from "react-icons/lu";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
-  console.log(theme);
   return (
     <Container maxW={"1920px"} px={4} py={4} boxShadow={"md"}>
       <Flex
@@ -33,7 +32,7 @@ const Navbar = () => {
           <Link to={"/"}>Product Store 🛒</Link>
         </Text>
 
-        <HStack padding={4} alignItems={"center"}>
+        <HStack alignItems={"center"}>
           <Link to={"/create"}>
             <Button>
               <Icon>
