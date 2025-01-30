@@ -12,6 +12,8 @@ type ProductStore = {
   createProduct: (
     newProduct: Product
   ) => Promise<{ success: boolean; message: string }>;
+  fetchProducts: (
+  ) => Promise<void>;
 };
 
 export const useProductStore = create<ProductStore>((set) => ({
@@ -32,5 +34,10 @@ export const useProductStore = create<ProductStore>((set) => ({
     set((state) => ({ products: [...state.products, data.data] }));
 
     return { success: true, message: "Product created successfully." };
+  },
+  fetchProducts: async () => {
+    const res = await fetch("/api/products");
+    const data = await res.json();
+    set({ products: data.data });
   },
 }));

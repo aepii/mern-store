@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <Container maxW={"1920px"} px={4} py={4} boxShadow={"md"}>
       <Flex
-        h={{ base:20, sm:12 }}
+        h={{ base: 20, sm: 12 }}
         alignItems={"center"}
         justifyContent={"space-between"}
         flexDir={{
@@ -21,7 +21,7 @@ const Navbar = () => {
         }}
       >
         <Text
-          fontSize={{ base:"xl", sm:"3xl" }}
+          fontSize={{ base: "xl", sm: "3xl" }}
           fontWeight={"bold"}
           textTransform={"uppercase"}
           textAlign={"center"}
