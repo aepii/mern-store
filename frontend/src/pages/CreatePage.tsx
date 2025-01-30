@@ -7,6 +7,7 @@ import {
   Input,
   VStack,
 } from "@chakra-ui/react";
+import { Toaster, toaster } from "@/components/ui/toaster";
 import { useState } from "react";
 import { useProductStore } from "@/store/product";
 
@@ -23,6 +24,22 @@ const CreatePage = () => {
     const { success, message } = await createProduct(newProduct);
     console.log("Success:", success);
     console.log("Message:", message);
+    if (!success) {
+      toaster.create({
+        title: "Error",
+        description: message,
+        type: "error",
+        meta: { closable: true },
+      });
+    } else {
+      toaster.create({
+        title: "Success",
+        description: message,
+        type: "success",
+        meta: { closable: true },
+      });
+      setNewProduct({ name: "", price: "", image: "" });
+    }
   };
   return (
     <Container maxW={"4xl"}>
@@ -71,6 +88,7 @@ const CreatePage = () => {
           </VStack>
         </Box>
       </VStack>
+      <Toaster />
     </Container>
   );
 };
