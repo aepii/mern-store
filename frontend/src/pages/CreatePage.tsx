@@ -42,8 +42,8 @@ const CreatePage = () => {
     }
   };
   return (
-    <Container maxW={"4xl"}>
-      <VStack padding={8}>
+    <Container maxW={"4xl"} py={8}>
+      <VStack>
         <Heading as={"h1"} size={"2xl"} textAlign={"center"} mb={4}>
           Create New Product
         </Heading>
@@ -55,7 +55,7 @@ const CreatePage = () => {
           rounded={"lg"}
           shadow={"md"}
         >
-          <VStack padding={4}>
+          <VStack gap={4}>
             <Input
               placeholder={"Product Name"}
               name="name"

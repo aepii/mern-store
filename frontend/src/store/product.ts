@@ -1,10 +1,5 @@
 import { create } from "zustand";
-
-type Product = {
-  name: string;
-  price: string;
-  image: string;
-};
+import { Product } from "@/types/product.type";
 
 type ProductStore = {
   products: Product[];
@@ -12,8 +7,7 @@ type ProductStore = {
   createProduct: (
     newProduct: Product
   ) => Promise<{ success: boolean; message: string }>;
-  fetchProducts: (
-  ) => Promise<void>;
+  fetchProducts: () => Promise<void>;
 };
 
 export const useProductStore = create<ProductStore>((set) => ({

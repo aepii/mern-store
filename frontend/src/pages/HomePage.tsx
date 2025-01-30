@@ -10,17 +10,19 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useProductStore } from "@/store/product";
 import ProductCard from "@/components/ProductCard";
+import { useColorModeValue } from "@/components/ui/color-mode";
 
 const HomePage = () => {
   const { fetchProducts, products } = useProductStore();
+  const color = useColorModeValue("cyan.400", "blue.500")
+
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
 
-  console.log(products);
   return (
-    <Container maxW={"container.x1"}>
-      <VStack padding={8}>
+    <Container maxW={"container.x1"} py={8}>
+      <VStack gap={8}>
         <Heading
           as={"h1"}
           size={"2xl"}
@@ -29,30 +31,31 @@ const HomePage = () => {
           gradientFrom={"cyan.400"}
           gradientTo={"blue.500"}
           bgClip={"text"}
-          mb={4}
+          mb={6}
         >
           Current Products 🚀
         </Heading>
       </VStack>
-
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} padding={10} w={"full"}>
-        {products.map((product) => (
-          <ProductCard key={product._id} product={product} />
-        ))}
-      </SimpleGrid>
-
-      <Text fontSize="xl" textAlign="center" fontWeight="bold">
-        No products found 😢{" "}
-        <Link to="/create">
-          <Box
-            as="span"
-            color="blue.500"
-            _hover={{ textDecoration: "underline" }}
-          >
-            Create a product
-          </Box>
-        </Link>
-      </Text>
+      {products.length > 0 ? (
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap={10} w={"full"}>
+          {products.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+        </SimpleGrid>
+      ) : (
+        <Text fontSize="xl" textAlign="center" fontWeight="bold">
+          No products found 😢{" "}
+          <Link to="/create">
+            <Box
+              as="span"
+              color={color}
+              _hover={{ textDecoration: "underline" }}
+            >
+              Create a product
+            </Box>
+          </Link>
+        </Text>
+      )}
     </Container>
   );
 };

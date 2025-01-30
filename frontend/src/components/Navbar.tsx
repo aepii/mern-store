@@ -1,10 +1,9 @@
 import { Button, Container, Flex, HStack, Icon, Text } from "@chakra-ui/react";
 import { useTheme } from "next-themes";
 import { Link } from "react-router-dom";
-
 import { FiPlusSquare } from "react-icons/fi";
-import { IoMoon } from "react-icons/io5";
-import { LuSun } from "react-icons/lu";
+import { BiMoon } from "react-icons/bi";
+import { BiSun } from "react-icons/bi";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
@@ -41,7 +40,7 @@ const Navbar = () => {
             </Button>
           </Link>
           <Button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-            {theme === "light" ? <IoMoon /> : <LuSun size="20" />}
+            {theme === "light" ? <BiMoon /> : <BiSun size="20" />}
           </Button>
         </HStack>
       </Flex>
