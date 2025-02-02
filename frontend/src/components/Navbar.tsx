@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import { FiPlusSquare } from "react-icons/fi";
 import { BiMoon } from "react-icons/bi";
 import { BiSun } from "react-icons/bi";
+import { useColorModeValue } from "@/components/ui/color-mode";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
+  const color = useColorModeValue("cyan.400", "blue.500");
+
   return (
     <Container maxW={"1920px"} px={4} py={4} boxShadow={"md"}>
       <Flex
@@ -39,7 +42,10 @@ const Navbar = () => {
               </Icon>
             </Button>
           </Link>
-          <Button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+          <Button
+            colorPalette={"brand"}
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          >
             {theme === "light" ? <BiMoon /> : <BiSun size="20" />}
           </Button>
         </HStack>

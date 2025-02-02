@@ -11,10 +11,11 @@ import { Link } from "react-router-dom";
 import { useProductStore } from "@/store/product";
 import ProductCard from "@/components/ProductCard";
 import { useColorModeValue } from "@/components/ui/color-mode";
+import { Toaster } from "@/components/ui/toaster";
 
 const HomePage = () => {
   const { fetchProducts, products } = useProductStore();
-  const color = useColorModeValue("cyan.400", "blue.500")
+  const color = useColorModeValue("cyan.400", "blue.500");
 
   useEffect(() => {
     fetchProducts();
@@ -56,6 +57,7 @@ const HomePage = () => {
           </Link>
         </Text>
       )}
+      <Toaster />
     </Container>
   );
 };

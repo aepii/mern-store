@@ -8,6 +8,7 @@ type ProductStore = {
     newProduct: Product
   ) => Promise<{ success: boolean; message: string }>;
   fetchProducts: () => Promise<void>;
+  deleteProduct: (productID: string | undefined) => Promise<{ success: boolean; message: string }>;
 };
 
 export const useProductStore = create<ProductStore>((set) => ({
@@ -33,5 +34,18 @@ export const useProductStore = create<ProductStore>((set) => ({
     const res = await fetch("/api/products");
     const data = await res.json();
     set({ products: data.data });
+  },
+  deleteProduct: async (productID) => {
+    const res = await fetch(`/api/products/${productID}`, {
+      method: "DELETE",
+    });
+    const data = await res.json();
+    if (!data.success) {
+      return { success: false, message: data.message };
+    }
+    set((state) => ({
+      products: state.products.filter((product) => product._id !== productID),
+    }));
+    return { success: true, message: data.message };
   },
 }));
