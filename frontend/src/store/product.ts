@@ -71,6 +71,6 @@ export const useProductStore = create<ProductStore>((set) => ({
         product._id === productID ? data.data : product
       ),
     }));
-    return { success: true, message: data.message };
+    return { success: true, message: "Product updated successfully." };
   },
 }));
